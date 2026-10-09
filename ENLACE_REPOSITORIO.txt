@@ -1,0 +1,31 @@
+EVIDENCIA GA7-220501096-AA3-EV01
+CODIFICACION DE MODULOS DEL SOFTWARE STAND-ALONE, WEB Y MOVIL
+
+Aprendiz:
+Cristian Camilo Betancur Alzate
+
+Programa:
+Tecnologo en Analisis y Desarrollo de Software - ADSO
+
+Proyecto formativo:
+Sistema RFID de Gestion de Activos
+
+Modulo desarrollado:
+API REST para la gestion de categorias de activos
+
+Repositorio del proyecto:
+https://github.com/CrissBett/RFIDCategoriaActivoSpring
+
+Tecnologias principales:
+Java 21, Maven, Spring Boot, Spring Web, Spring Data JPA,
+Hibernate, Jakarta Validation, MySQL, JUnit y Postman.
+
+Endpoint principal:
+http://localhost:8081/api/categorias
+
+Nota:
+El repositorio contiene el codigo fuente, la configuracion Maven,
+el script SQL, la documentacion y los archivos necesarios para
+compilar y ejecutar el modulo. Las credenciales de MySQL no se
+incluyen y deben configurarse mediante las variables de entorno
+RFID_DB_USER y RFID_DB_PASSWORD.
