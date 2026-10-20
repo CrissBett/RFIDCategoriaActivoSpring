@@ -12,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 /**
  * Centraliza el manejo de excepciones generadas
@@ -52,6 +53,42 @@ public class ManejadorGlobalExcepciones {
         respuesta.put(
                 "errores",
                 errores
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(respuesta);
+    }
+
+    /**
+     * Procesa los errores producidos cuando un parámetro
+     * de la URL no tiene el tipo de dato esperado.
+     *
+     * <p>Por ejemplo, cuando se recibe {@code abc} en una ruta
+     * que requiere un identificador numérico.</p>
+     *
+     * @param excepcion excepción de conversión del argumento
+     * @return respuesta HTTP 400 con un mensaje comprensible
+     */
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Map<String, Object>>
+            manejarTipoArgumentoInvalido(
+                    MethodArgumentTypeMismatchException excepcion) {
+
+        Map<String, Object> respuesta =
+                crearRespuestaBase(
+                        HttpStatus.BAD_REQUEST,
+                        "El identificador debe ser un número entero válido."
+                );
+
+        respuesta.put(
+                "parametro",
+                excepcion.getName()
+        );
+
+        respuesta.put(
+                "valorRecibido",
+                excepcion.getValue()
         );
 
         return ResponseEntity
